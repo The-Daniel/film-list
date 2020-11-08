@@ -17,7 +17,7 @@ class colour:
     CLEAR = '\033[0m'
 
 class Video:
-    def __init__(self, name, age):
+    def __init__(self, name, duration):
         self.name = name
         self.duration = duration
 
@@ -50,32 +50,32 @@ def main(argv):
     filmDir = str(argv[-1])
     if not os.path.exists(filmDir): raise FileNotFoundError(filmDir)
             
-fileList = list()
+    fileList = list()
 
-for dp, dn, filenames in os.walk(filmDir):
-    for f in filenames:
-        ext = os.path.splitext(f)[1]
-        if ext in VID_FILES:
-            filepath = os.path.join(dp, f)
-            duration = VideoFileClip(filepath).duration
-            fileList += [ Video(f, duration)]
-        elif (ext not in JUNK_FILES):
-            print('Unhandled file extension:', os.path.splitext(f)[1], '({})'.format(f))
+    for dp, dn, filenames in os.walk(filmDir):
+        for f in filenames:
+            ext = os.path.splitext(f)[1]
+            if ext in VID_FILES:
+                filepath = os.path.join(dp, f)
+                duration = VideoFileClip(filepath).duration
+                fileList += [ Video(f, duration)]
+            elif (ext not in JUNK_FILES):
+                print('Unhandled file extension:', os.path.splitext(f)[1], '({})'.format(f))
 
-fileList.sort(key = dur)
-for f in fileList:
-    def titColour(x):
-        return {
-            0: colour.FILM0,
-            1: colour.FILM1,
-            2: colour.FILM2,
-            3: colour.FILM3,
-            'default': colour.DEFAULT,
-        }.get(x, colour.FILM1) 
+    fileList.sort(key = dur)
+    for f in fileList:
+        def titColour(x):
+            return {
+                0: colour.FILM0,
+                1: colour.FILM1,
+                2: colour.FILM2,
+                3: colour.FILM3,
+                'default': colour.DEFAULT,
+            }.get(x, colour.FILM1) 
 
-    print( colour.TIME + durPretty(f.duration) + colour.CLEAR, 
-        colour.SEP + '||',
-        titColour(durHours(dur(f))) + prettyTitle(f.name) + colour.CLEAR)
+        print( colour.TIME + durPretty(f.duration) + colour.CLEAR, 
+            colour.SEP + '||',
+            titColour(durHours(dur(f))) + prettyTitle(f.name) + colour.CLEAR)
 
 if __name__ == "__main__":
    main(sys.argv[1:])
