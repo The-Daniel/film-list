@@ -1,38 +1,9 @@
 import os
 import sys
-import math
+
+from utils import *
 
 from moviepy.video.io.VideoFileClip import VideoFileClip
-
-class colour:
-    SEP = '\033[96m' # GREEN
-    TIME = '\033[1m'
-
-    FILM0 = '\033[95m'
-    FILM1 = '\033[92m'
-    FILM2 = '\033[93m'
-    FILM3 = '\033[91m'
-    DEFAULT = '\033[94m'
-
-    CLEAR = '\033[0m'
-
-class Video:
-    def __init__(self, name, duration):
-        self.name = name
-        self.duration = duration
-
-def dur(vid):
-    return vid.duration
-
-def durHoursMins(dur):
-    return list(map(math.floor, divmod(dur / 60, 60)))
-
-def durHours(dur):
-    return durHoursMins(dur)[0]
-
-def durPretty(dur):
-    h, m = durHoursMins(dur)
-    return '{:d} h {:02d} m'.format(int(h), int(m))
 
 VID_FILES = ['.mp4', '.avi', '.mkv']
 JUNK_FILES = ['.srt', '.jpg', '.jpeg', '.png', '.txt', '.nfo', '.ini']
