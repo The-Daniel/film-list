@@ -45,7 +45,9 @@ def prettyTitle(tit):
         tit = tit.replace(WORD, '')
     return tit.replace('.', ' ')
 
-filmDir = str(sys.argv[-1]) # '/run/media/dandan/9CA5-30ED/Movies/'
+
+def main(argv):
+    filmDir = str(argv[-1])
 fileList = list()
 
 for dp, dn, filenames in os.walk(filmDir):
@@ -58,9 +60,7 @@ for dp, dn, filenames in os.walk(filmDir):
         elif (ext not in JUNK_FILES):
             print('Unhandled file extension:', os.path.splitext(f)[1], '({})'.format(f))
 
-
 fileList.sort(key = dur)
-
 for f in fileList:
     def titColour(x):
         return {
@@ -74,3 +74,6 @@ for f in fileList:
     print( colour.TIME + durPretty(f.duration) + colour.CLEAR, 
         colour.SEP + '||',
         titColour(durHours(dur(f))) + prettyTitle(f.name) + colour.CLEAR)
+
+if __name__ == "__main__":
+   main(sys.argv[1:])
