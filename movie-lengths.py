@@ -48,6 +48,8 @@ def prettyTitle(tit):
 
 def main(argv):
     filmDir = str(argv[-1])
+    if not os.path.exists(filmDir): raise FileNotFoundError(filmDir)
+            
 fileList = list()
 
 for dp, dn, filenames in os.walk(filmDir):
