@@ -24,7 +24,8 @@ class colour:
     FILM1 = '\033[92m'
     FILM2 = '\033[93m'
     FILM3 = '\033[91m'
-    DEFAULT = '\033[94m'
+    FILM4 = '\033[94m'
+    DEFAULT = '\033[90m'
     # Formatting for other elements in list
     SEP = '\033[96m'
     TIME = '\033[1m'

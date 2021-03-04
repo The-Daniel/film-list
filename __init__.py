@@ -39,8 +39,9 @@ def main(argv):
                 1: colour.FILM1,
                 2: colour.FILM2,
                 3: colour.FILM3,
+                4: colour.FILM4,
                 'default': colour.DEFAULT,
-            }.get(x, colour.FILM1) 
+            }.get(x, colour.DEFAULT) 
 
         print( colour.TIME + durPretty(f.duration) + colour.CLEAR, 
             colour.SEP + '||',
