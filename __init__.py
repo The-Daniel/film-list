@@ -10,10 +10,11 @@ JUNK_FILES = ['.srt', '.jpg', '.jpeg', '.png', '.txt', '.nfo', '.ini']
 JUNK_WORDS = VID_FILES + [ '1080p', '720p', '480p', 'x264', 'BluRay', 'BrRip', 'BRRip', 'BRrip', 'Bluray', 'HDRip', 'HDTV', 'Rip', 'DUAL AUDIO',
     'YIFY', 'XviD', 'PRiSTiNE', 'anoXmous_', 'BOKUTOX', 'anoXmous', 'Sujaidr', 'ShAaNiG', 'ExYuSubs', '-VLiS', '-FTP', 'GAZ' ]
 
-def prettyTitle(tit):
-    for WORD in JUNK_WORDS:
-        tit = tit.replace(WORD, '')
-    return tit.replace('.', ' ')
+def prettyTitle(str):
+    for word in JUNK_WORDS:
+        str = str.replace(word, '')
+    str = str.replace('.', ' ')
+    return str
 
 def main(argv):
     filmDir = str(argv[-1])
