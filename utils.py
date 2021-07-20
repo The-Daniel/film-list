@@ -1,16 +1,16 @@
 import math
 
-def dur(vid):
+def get_duration(vid):
     return vid.duration
 
-def durHoursMins(dur):
+def get_mins_hours(dur):
     return list(map(math.floor, divmod(dur / 60, 60)))
 
-def durHours(dur):
-    return durHoursMins(dur)[0]
+def get_hours(dur):
+    return get_mins_hours(dur)[0]
 
-def durPretty(dur):
-    h, m = durHoursMins(dur)
+def get_duration_pretty(dur):
+    h, m = get_mins_hours(dur)
     return '{:d} h {:02d} m'.format(int(h), int(m))
 
 class Video:
@@ -18,7 +18,7 @@ class Video:
         self.name = name
         self.duration = duration
 
-class colour:
+class Colour:
     # Formatting for film titles
     FILM0 = '\033[95m'
     FILM1 = '\033[92m'
